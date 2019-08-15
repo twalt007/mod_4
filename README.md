@@ -1,4 +1,4 @@
-# Module 4 (Server Side) Lessons - Complete
+# Module 4 (Server Side) Exercises
 
 ## Exercises
 
