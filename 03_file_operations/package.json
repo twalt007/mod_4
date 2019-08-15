@@ -1,0 +1,19 @@
+{
+  "name": "02_simple_cli",
+  "version": "1.0.0",
+  "description": "The to do list CLI tool from the simple_cli exercise with added file operations to persist the list data",
+  "main": "todo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Learning-Fuze/mod_4_lessons_complete.git"
+  },
+  "author": "Scott Bowler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Learning-Fuze/mod_4_lessons_complete/issues"
+  },
+  "homepage": "https://github.com/Learning-Fuze/mod_4_lessons_complete#readme"
+}

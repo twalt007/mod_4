@@ -1,0 +1,7 @@
+node_modules
+
+.vscode
+.idea
+.DS_Store
+
+03_file_operations/todos.json
