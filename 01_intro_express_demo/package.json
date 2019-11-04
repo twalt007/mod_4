@@ -1,0 +1,14 @@
+{
+  "name": "01_intro_express_demo",
+  "version": "1.0.0",
+  "description": "In class we will be building a simple express server to serve the pre built front end (client). We will be adding a single endpoint to serve some dummy user data.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tatumn Walter",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
