@@ -6,7 +6,7 @@ const path = require('path');
 
 const server = http.createServer((request,response)=> {
     console.log('Server received a request: ', request.url);
-    let filePath = '.'+request.url;
+    let filePath = '.' + request.url;
 
     if(filePath === './'){
         filePath += 'index.html';
@@ -14,7 +14,7 @@ const server = http.createServer((request,response)=> {
 
     const ext = path.extname(filePath);
 
-    console.Console('File Extension: ', ext);
+    console.log('File Extension: ', ext);
 
     const mimeTypes = {
         '.html': ''
