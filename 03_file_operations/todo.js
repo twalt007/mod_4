@@ -1,9 +1,7 @@
 const readline = require('readline');
-// require in the 'fs' module
+const fs = require('fs');
 
-// Create a const to hold the file path to
-// the json file where you want to store
-// the to do list data
+const filePath = `${__dirname}/todos.json`;
 
 let mode = 'menu';
 const prompts = {
@@ -12,14 +10,15 @@ const prompts = {
     remove: ({length}) => `Which item would you like to remove (1${length > 1 ? ` - ${length}` : ''}): `
 }
 
-// Check if the json file exists
-// If the file does not exist
-// create the file with an empty 
-// array inside of it
+let toDos = []; 
 
-// Read the todos.json file and save the contents
-// into the toDos const. Don't forget to parse the JSON
-const toDos = []; // Replace empty array with the file contents
+if(fs.existsSync(filePath)){
+    const fileContents = fs.readFileSync(filePath,'utf-8');
+    toDos = JSON.parse(fileContents)
+}else{
+    fs.writeFileSync(filePath,'[]');
+}
+
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -46,9 +45,7 @@ rl.on('line', input => {
 });
 
 rl.on('close', () => {
-    // Write the contents of the toDos array
-    // to the JSON file. Don't forget to 
-    // stringify the array
+    fs.writeFileSync(filePath,JSON.stringify(toDos));
 
     console.log('\n\n===== Goodbye, Thank you for using the Persistent To Do CLI! =====\n');
 
