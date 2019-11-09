@@ -76,3 +76,14 @@ nav.main ul > li > a:hover {
 .user-data p {
     font-size: 1.5em;
 }
+.not-found-container{
+    display: flex;
+    height: 100vh;
+}
+.not-found-content{
+    margin:auto;
+    text-align: center;
+}
+.not-found-content a {
+    font-size: 2rem;
+}
