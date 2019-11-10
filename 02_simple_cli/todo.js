@@ -1,52 +1,37 @@
-// Require in the 'readline' module and save it into a const 
-
-// This variable will be used as a flag variable to 
-// determine if you are in add item mode or not
+const readline = require("readline");
 let addItemMode = false;
-
-// An object to hold our different prompt messages
 const prompts = {
     'new': 'Enter a new to do item: ',
     'menu': 'What would you like to do: (N)ew, (L)ist, E(x)it > '
 }
-
-// This is where the to to items will be stored
 const toDos = [];
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-// Use readline to create an interface. Save the 
-// interface into a const named rl
 
-// Displays a message to the user 
-// welcoming them to the To Do List CLI
+
 console.log('\n===== Welcome to the To Do CLI =====\n');
 
-// Display the prompt to the user,
-// it should be the menu prompt
+rl.setPrompt(prompts.menu);
+rl.prompt();
 
-// Create a readline event listener for the 'line'
-// event. In the callback function do the following:
-//
-// In the event callback:
-// remove any extra white space from the ends of 
-// the input.
-//
-// if addItemMode is true call the handleAdd function
-// and pass it the input from the user
-//
-// else call the handleMenu function
-// and pass it the input from the user
-//
-// After the if statement
-// display the prompt to the user
+rl.on('line',(input)=> {
+    input = input.trim();
+    if (addItemMode){
+        handleAdd(input);
+    }else{
+        handleMenu(input);
+    }
+    rl.prompt();
+});
 
 
-// Create a readline event listener for the 'close'
-// event. In the callback function do the following:
-//
-// In the event callback display a message to the user
-// Saying goodbye and thanks for using the CLI tool
-//
-// Exit the node process with a code of 0
+rl.on('close',() => {
+    console.log('\n===== Goodbye!  Thanks for using the To-Do List! =====\n');
+    process.exit(0);
+});
 
 /**
  * @description Takes in a single string parameter and adds it to the to do list array then sets the prompt back to the menu options. 
@@ -56,7 +41,7 @@ console.log('\n===== Welcome to the To Do CLI =====\n');
 function handleAdd(newItem) {
     toDos.push(newItem);
     addItemMode = false;
-    // Set the prompt to the 'menu' prompt
+    rl.setPrompt(prompts.menu);
 }
 
 /**
@@ -72,15 +57,15 @@ function handleMenu(menuChoice) {
         case 'l':
         case 'list':
             console.log('Your to do items:', toDos);
-            // Set the prompt to the 'menu' prompt
+            rl.setPrompt(prompts.menu);
             break;
         case 'n':
         case 'new':
             addItemMode = true;
-            // Set the prompt to the 'new' prompt
+            rl.setPrompt(prompts.new);
             break;
         default:
             console.log(`"${menuChoice}" is an unknown command. Valid commands: "New", "List", or "Exit"`);
-            // Set the prompt to the 'menu' prompt
+            rl.setPrompt(prompts.menu);
     }
-}
+}  
