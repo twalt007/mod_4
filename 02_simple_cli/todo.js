@@ -68,4 +68,4 @@ function handleMenu(menuChoice) {
             console.log(`"${menuChoice}" is an unknown command. Valid commands: "New", "List", or "Exit"`);
             rl.setPrompt(prompts.menu);
     }
-}
+}  
