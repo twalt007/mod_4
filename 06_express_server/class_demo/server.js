@@ -89,4 +89,4 @@ app.post('/api/students/',(req,res)=>{
 
 app.listen(3000, ()=>{
     console.log('Server listening @ localhost:3000');
-});
+}); 
