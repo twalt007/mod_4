@@ -6,6 +6,8 @@ async function getUser(){
             url: '/api/user'
         });
 
+        console.log('Server Response:', user);
+
         // Pass user data from server into renderUserData
         renderUserData(user);
     } catch (error) {
