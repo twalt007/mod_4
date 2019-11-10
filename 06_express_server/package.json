@@ -1,0 +1,14 @@
+{
+  "name": "06_express_server",
+  "version": "1.0.0",
+  "description": "mod_4 activity",
+  "main": "todo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tatumn Walter",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
