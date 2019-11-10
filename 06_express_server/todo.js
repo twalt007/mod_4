@@ -34,10 +34,10 @@ app.get('/api/todos/:id',(req,res)=>{
     const index = id-1;
     // console.log('Getting specific id: ', index);
     // console.log(`ToDos List No. ${id}: ${toDos[index]}`);
-    let message = `Unfortunately that to-do number isn't on the list - maybe you were more efficient than you thought?  Or...more likely you forgot to write it down?`
+    let message = `Unfortunately to-do number ${id} isn't on the list - maybe you were more efficient than you thought?  Or...more likely you forgot to write it down?`
 
     if(toDos[index]){
-        message = `ToDos List No. ${id}==> Due ${toDos[index].dueDate}: ${toDos[index].title}`;
+        message = `ToDos List No. ${id}==> Due: ${toDos[index].dueDate}. Task: ${toDos[index].title}`;
     }
     
     res.send({
@@ -73,10 +73,28 @@ app.post('/api/todos',(req,res)=>{
 
 app.delete('/api/todos/:id',(req,res)=>{
     const { id } = req.params;
+    const index = id-1;
+    let message = `Unfortunately to-do number ${id} isn't on the list - maybe you were more efficient than you thought?  Or...more likely you forgot to write it down?`
+
+    // if(!toDos[index]){     not needed if we simply check that the idnex exists below, rathher than doing a chec for legnth
+    //     res.send({
+    //         message: message
+    //     });
+    //     return;
+    // }
+
+    if(toDos[index]){
+        const removed = toDos.splice(index,1);
+        message = `Congratulations! to-do number ${id}, ${removed[0].title} has been completed. But you failed miserably and didn't make the due date of ${removed[0].dueDate}`
+    }
+
+    res.send({
+        message: message
+    })
     
 });
 
-app.patch('ap./todos/:id',(req,res))
+
 
 app.listen(PORT, ()=>{
     console.log(`Server listening @ localhost:${PORT}`);
