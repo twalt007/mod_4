@@ -162,5 +162,5 @@ function handleRemoveItem(itemNumber){
     mode = 'menu';
     rl.setPrompt(prompts.menu);
 
-    return true;
+    return true;  
 }
