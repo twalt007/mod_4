@@ -17,7 +17,7 @@ const toDos = [
     },
     {
         "title": "Stare mindlesslly into space and think I've found the link in quantum physics between anti-gravitational matter and time, only to realize it ws a bad case of indigestion",
-        "dueDate": "Already done.  A few times"
+        "dueDate": "Everytime you drink too much.  And the times inbetween as well."
     },
     {
         "title": "Cry myself to sleep",
@@ -94,7 +94,43 @@ app.delete('/api/todos/:id',(req,res)=>{
     
 });
 
+app.patch('/api/todos/:id', (req,res)=>{
+    const { id } = req.params;
+    const { body } = req;
+    const index = id-1;
+    const item = toDos[index];
+    const errors = [];
+    console.log('item pre modification', item);
+    console.log('body.dueDate: ', body.dueDate, ', body.title: ', body.title)
+    
+    if(!body.title && !body.dueDate){
+        errors.push('Well this was a useless request - you didn\'t change anything on the list.');
+    }
+    if(!toDos[index]){
+        errors.push(`Unfortunately to-do number ${id} isn't on the list - maybe you were more efficient than you thought?  Or...more likely you forgot to write it down?`)
+    }
 
+
+    if(errors.length){
+        res.status(422).send(errors);
+        return
+    }
+
+    if(body.title){
+        item.title = body.title
+    }
+    if(body.dueDate){
+        item.dueDate = body.dueDate
+    }
+    console.log('testing to see if updated item', item);
+    
+    console.log(`this will be a patch with id ${id}; and body: `, body);
+
+    res.send({
+        message: `You have updated To-Do item no. ${id} to read Title: ${item.title}, Due Date: ${item.dueDate}`
+    });
+    
+});
 
 app.listen(PORT, ()=>{
     console.log(`Server listening @ localhost:${PORT}`);
