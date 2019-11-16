@@ -39,7 +39,7 @@ const server = http.createServer((request,response)=> {
     console.log('File MIME Type: ', type);
 
     console.log('File Path: ', filePath);
-    fs.readFile(filePath, (error, data) => {
+    fs.readFile(filePath, (error, data) => {///////note that readFile [NO SYNC] is used here
         console.log('Read File Error: ', error);
         if(error || !type){
             if(error.code === 'ENOENT'){
