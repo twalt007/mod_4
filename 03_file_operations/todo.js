@@ -12,6 +12,7 @@ const prompts = {
 
 let toDos = []; 
 
+//////check to see if the file we need exists; if yes, read it; if no, create it
 if(fs.existsSync(filePath)){
     const fileContents = fs.readFileSync(filePath,'utf-8');/////note that readFileSync [Sync] is used here
     toDos = JSON.parse(fileContents)
